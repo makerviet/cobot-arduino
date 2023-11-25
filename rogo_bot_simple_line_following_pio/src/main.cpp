@@ -15,25 +15,25 @@
 #define SENSOR_3_PIN 1
 #define SENSOR_4_PIN 0
 
-#define IR_LED_ON 20
-#define W_LED_ON  21
+#define W_LED_ON 20
+#define IR_LED_ON  21
 
-#define threshold 2000
+#define threshold 1900
 
-uint8_t vspeed = 70; //50    
-uint8_t tspeed = 70; //70
+uint8_t vspeed = 50; //50    
+uint8_t tspeed = 50; //70
 
 uint8_t vspeed_l = vspeed;
 uint8_t tspeed_l = tspeed;
-uint8_t vspeed_r = vspeed * 1.5;
-uint8_t tspeed_r = tspeed * 1.5;
+uint8_t vspeed_r = vspeed * 1.6;
+uint8_t tspeed_r = tspeed * 1.6;
 
 void stop()
 {
     ledcWrite(left_motor_chanel_a, 0);
     ledcWrite(left_motor_chanel_b, 0);
     ledcWrite(right_motor_chanel_a, 0);
-    ledcWrite(right_motor_chanel_b, 0);    
+    ledcWrite(right_motor_chanel_b, 0); 
     Serial.println("stop");
 }
 
@@ -49,9 +49,9 @@ void forward()
 void backward()
   {
     ledcWrite(left_motor_chanel_a, 0);
-    ledcWrite(left_motor_chanel_b, vspeed_l);
+    ledcWrite(left_motor_chanel_b, (vspeed_l / 2));
     ledcWrite(right_motor_chanel_a, 0);
-    ledcWrite(right_motor_chanel_b, vspeed_r);    
+    ledcWrite(right_motor_chanel_b, (vspeed_r/2));    
     Serial.println("backward");
   } 
 
@@ -89,40 +89,70 @@ void setup() {
 
   pinMode(W_LED_ON,OUTPUT);
   pinMode(IR_LED_ON,OUTPUT);
-  digitalWrite(W_LED_ON,1);
-  digitalWrite(IR_LED_ON,1);
+  digitalWrite(W_LED_ON, 0);
+  digitalWrite(IR_LED_ON, 1);
 }
 
 void loop() {
+  int sensor_1_state = analogRead(SENSOR_1_PIN);
+  int sensor_2_state = analogRead(SENSOR_2_PIN);
+  int sensor_3_state = analogRead(SENSOR_3_PIN);
+  int sensor_4_state = analogRead(SENSOR_4_PIN);
+
   Serial.print("sensor = \t");
-  Serial.print(analogRead(SENSOR_1_PIN));
+  Serial.print(sensor_1_state);
   Serial.print("\t");
-  Serial.print(analogRead(SENSOR_2_PIN));
+  Serial.print(sensor_2_state);
   Serial.print("\t");
-  Serial.print(analogRead(SENSOR_3_PIN));
+  Serial.print(sensor_3_state);
   Serial.print("\t");
-  Serial.println(analogRead(SENSOR_4_PIN));
+  Serial.println(sensor_4_state);
 
+  uint8_t sensor_array = 0;
+  
+  sensor_array += (sensor_1_state <= threshold);
+  sensor_array<<=1;
+  sensor_array += (sensor_2_state <= threshold);
+  sensor_array<<=1;
+  sensor_array += (sensor_3_state <= threshold);
+  sensor_array<<=1;
+  sensor_array += (sensor_4_state <= threshold);
 
-  // Serial.println(vspeed_l);
-  // Serial.print(" ");
-  // Serial.print(vspeed_r);
+  switch(sensor_array) 
+  {
+    case 0b1000:
+    case 0b1100:
+      left();
+      delay(50);
+      break;
 
-  if ((analogRead(SENSOR_1_PIN) > threshold  && analogRead(SENSOR_2_PIN) < threshold && analogRead(SENSOR_3_PIN) > threshold && analogRead(SENSOR_4_PIN) > threshold)
-      || (analogRead(SENSOR_1_PIN) > threshold  && analogRead(SENSOR_2_PIN) > threshold && analogRead(SENSOR_3_PIN) < threshold && analogRead(SENSOR_4_PIN) > threshold)
-      || (analogRead(SENSOR_1_PIN) > threshold  && analogRead(SENSOR_2_PIN) < threshold && analogRead(SENSOR_3_PIN) < threshold && analogRead(SENSOR_4_PIN) > threshold))
-    forward();
-  else
-    stop();
+    case 0b0001:
+    case 0b0011:
+      right();
+      delay(50);
+      break;
 
-  // if (analogRead(SENSOR_2_PIN) > threshold && analogRead(SENSOR_3_PIN) < threshold)
-  //   right();
+    case 0b0110:
+    case 0b0100:
+    case 0b0010:
+    case 0b1110:
+    case 0b0111:
+      forward();
+      delay(50);
+      break;
 
-  // if (analogRead(SENSOR_2_PIN) < threshold && analogRead(SENSOR_3_PIN) > threshold)
-  //   left();
+    case 0b0000:
+    case 0b1001:
+      backward();
+      delay(50);
+      break;
 
-  // if (analogRead(SENSOR_2_PIN) > threshold && analogRead(SENSOR_3_PIN) > threshold)
-  //   forward();
+    default:
+      forward();
+      delay(50);
+      break;
+  }
 
-  delay(10);
+  Serial.println(sensor_array, BIN);
+  delay(1000);
 }

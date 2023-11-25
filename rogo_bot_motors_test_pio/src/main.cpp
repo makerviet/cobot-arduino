@@ -15,8 +15,8 @@ uint8_t tspeed = 70; //70
 
 uint8_t vspeed_l = vspeed;
 uint8_t tspeed_l = tspeed;
-uint8_t vspeed_r = vspeed * 1.5;
-uint8_t tspeed_r = tspeed * 1.5;
+uint8_t vspeed_r = vspeed * 1.6;
+uint8_t tspeed_r = tspeed * 1.6;
 
 
 void forward();
