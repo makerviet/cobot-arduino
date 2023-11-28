@@ -121,7 +121,7 @@ void loop() {
   uint16_t r, g, b, c;
   tcs.getRawData(&r, &g, &b, &c);
 
-  Serial.print("color (r-g-b-c) = \t");
+  Serial.print("color = \t");
   Serial.print(r);
   Serial.print("\t");
   Serial.print(g);
