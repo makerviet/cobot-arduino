@@ -2,7 +2,7 @@
 #include <Wire.h>
 #include "Adafruit_TCS34725.h"
 
-Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X);
+//Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X);
 
 #define PWM_PIN_L_A 2
 #define PWM_PIN_L_B 10
@@ -20,17 +20,17 @@ Adafruit_TCS34725 tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS3472
 #define SENSOR_4_PIN 0
 
 #define W_LED_ON 20
-#define IR_LED_ON  21
+#define IR_LED_ON 21
 
 #define threshold 2000
 
-uint8_t vspeed = 50; //50    
-uint8_t tspeed = 50; //70
+uint8_t vspeed = 100; //50    
+uint8_t tspeed = 100; //70
 
 uint8_t vspeed_l = vspeed;
 uint8_t tspeed_l = tspeed;
-uint8_t vspeed_r = vspeed * 1.6;
-uint8_t tspeed_r = tspeed * 1.6;
+uint8_t vspeed_r = vspeed * 1.1;
+uint8_t tspeed_r = tspeed * 1.1;
 
 void stop()
 {
@@ -93,14 +93,14 @@ void setup() {
 
   pinMode(W_LED_ON,OUTPUT);
   pinMode(IR_LED_ON,OUTPUT);
-  digitalWrite(W_LED_ON, 1);
+  digitalWrite(W_LED_ON, 0);
   digitalWrite(IR_LED_ON, 1);
 
-  if (tcs.begin()) {
-    Serial.println("Found sensor");
-  } else {
-    Serial.println("No TCS34725 found ... check your connections");
-  }
+  // if (tcs.begin()) {
+  //   Serial.println("Found sensor");
+  // } else {
+  //   Serial.println("No TCS34725 found ... check your connections");
+  // }
 }
 
 void loop() {
@@ -118,17 +118,17 @@ void loop() {
   Serial.print("\t");
   Serial.println(sensor_4_state);
 
-  uint16_t r, g, b, c;
-  tcs.getRawData(&r, &g, &b, &c);
+  // uint16_t r, g, b, c;
+  // tcs.getRawData(&r, &g, &b, &c);
 
-  Serial.print("color = \t");
-  Serial.print(r);
-  Serial.print("\t");
-  Serial.print(g);
-  Serial.print("\t");
-  Serial.print(b);
-  Serial.print("\t");
-  Serial.println(c);
+  // Serial.print("color = \t");
+  // Serial.print(r);
+  // Serial.print("\t");
+  // Serial.print(g);
+  // Serial.print("\t");
+  // Serial.print(b);
+  // Serial.print("\t");
+  // Serial.println(c);
 
   uint8_t sensor_array = 0;
   
@@ -161,9 +161,9 @@ void loop() {
       forward();
       break;
 
-    case 0b0000:
-      backward();
-      break;
+    // case 0b0000:
+    //   backward();
+    //   break;
 
     default:
       forward();

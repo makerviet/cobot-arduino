@@ -10,13 +10,13 @@
 #define right_motor_chanel_a 2
 #define right_motor_chanel_b 3
 
-uint8_t vspeed = 70; //50    
-uint8_t tspeed = 70; //70
+uint8_t vspeed = 100; //50    
+uint8_t tspeed = 100; //70
 
 uint8_t vspeed_l = vspeed;
 uint8_t tspeed_l = tspeed;
-uint8_t vspeed_r = vspeed * 1;
-uint8_t tspeed_r = tspeed * 1;
+uint8_t vspeed_r = vspeed * 1.1;
+uint8_t tspeed_r = tspeed * 1.1;
 
 
 void forward();
