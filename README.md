@@ -7,9 +7,9 @@ Mã nguồn mở Arduino dành cho Cobot được phát triển và chia sẻ ph
 
 
 ## Sử dụng các chương trình mẫu
-Đối với người dùng Arduino IDE, sử dụng chương trình mẫu trong thư mục examples. Đối với PlatformIO, sử dụng chương trình mẫu trong thư mục Platform IO.
-- cobot_motors_test: chương trình mẫu giúp các bạn tham khảo các hàm để điều khiển robot di chuyển (đi thẳng, đi lùi, rẽ trái, rẽ phải, dừng).
-- cobot_simple_line_following: chương trình mẫu giúp các bạn tham khảo các hàm để đọc cảm biến hồng ngoại, cảm biến màu và xây dựng một thuật toán dò đường cơ bản.
+Đối với người dùng Arduino IDE, sử dụng chương trình mẫu trong thư mục *examples*. Đối với người dùng PlatformIO, sử dụng chương trình mẫu trong thư mục *pio*.
+- **cobot_motors_test**: chương trình mẫu giúp các bạn tham khảo các hàm để điều khiển robot di chuyển (đi thẳng, đi lùi, rẽ trái, rẽ phải, dừng).
+- **cobot_simple_line_following**: chương trình mẫu giúp các bạn tham khảo các hàm để đọc cảm biến hồng ngoại, cảm biến màu và xây dựng một thuật toán dò đường cơ bản.
 
 Chọn board ESP32C3 Dev Module để build và nạp chương trình.
 
