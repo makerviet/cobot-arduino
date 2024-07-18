@@ -11,7 +11,7 @@ Mã nguồn mở Arduino dành cho Cobot được phát triển và chia sẻ ph
 - **cobot_motors_test**: chương trình mẫu giúp các bạn tham khảo các hàm để điều khiển robot di chuyển (đi thẳng, đi lùi, rẽ trái, rẽ phải, dừng).
 - **cobot_simple_line_following**: chương trình mẫu giúp các bạn tham khảo các hàm để đọc cảm biến hồng ngoại, cảm biến màu và xây dựng một thuật toán dò đường cơ bản.
 
-Chọn board ESP32C3 Dev Module để build và nạp chương trình.
+Chọn board **ESP32C3 Dev Module** để build và nạp chương trình.
 
 ## Các vấn đề thường gặp
 ### 1. Không nạp được chương trình
@@ -21,5 +21,5 @@ Chọn board ESP32C3 Dev Module để build và nạp chương trình.
 - **Bước 3**: Nhả nút flash, tiến hành nạp chương trình như bình thường.
 - **Bước 4**: Sau khi nạp chương trình thành công, ngắt nguồn mạch và kết nối lại để chương trình bắt đầu chạy.
 ### 2. Không xuất được giá trị qua Serial Monitor (Arduino IDE)
-Vào menu *Tools*, trỏ tới mục *USB CDC On Boot*, chọn *Enable*
+Vào menu ***Tools***, trỏ tới mục ***USB CDC On Boot***, chọn ***Enable***
 ![](https://raw.githubusercontent.com/makerviet/cobot/1eed924444022dfd935ee815f97b51728cb1fb5f/documents/img/2.png)
