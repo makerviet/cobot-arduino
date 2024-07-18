@@ -21,5 +21,5 @@ Chọn board **ESP32C3 Dev Module** để build và nạp chương trình.
 - **Bước 3**: Nhả nút flash, tiến hành nạp chương trình như bình thường.
 - **Bước 4**: Sau khi nạp chương trình thành công, ngắt nguồn mạch và kết nối lại để chương trình bắt đầu chạy.
 ### 2. Không xuất được giá trị qua Serial Monitor (Arduino IDE)
-Vào menu ***Tools***, trỏ tới mục ***USB CDC On Boot***, chọn ***Enable***
+Vào menu ***Tools***, trỏ tới mục ***USB CDC On Boot***, chọn ***Enable***, sau đó nạp lại chương trình.
 ![](https://raw.githubusercontent.com/makerviet/cobot/1eed924444022dfd935ee815f97b51728cb1fb5f/documents/img/2.png)
