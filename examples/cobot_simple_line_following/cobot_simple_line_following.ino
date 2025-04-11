@@ -33,55 +33,55 @@ uint8_t tspeed_r = tspeed * 1.1;
 
 void stop()
 {
-    ledcWrite(left_motor_channel_a, 0);
-    ledcWrite(left_motor_channel_b, 0);
-    ledcWrite(right_motor_channel_a, 0);
-    ledcWrite(right_motor_channel_b, 0); 
-    Serial.println("stop");
+  ledcWriteChannel(left_motor_channel_a, 0);
+  ledcWriteChannel(left_motor_channel_b, 0);
+  ledcWriteChannel(right_motor_channel_a, 0);
+  ledcWriteChannel(right_motor_channel_b, 0); 
+  Serial.println("stop");
 }
 
 void forward()
 {
-    ledcWrite(left_motor_channel_a, vspeed_l);
-    ledcWrite(left_motor_channel_b, 0);
-    ledcWrite(right_motor_channel_a, vspeed_r);
-    ledcWrite(right_motor_channel_b, 0);    
-    Serial.println("forward");
+  ledcWriteChannel(left_motor_channel_a, vspeed_l);
+  ledcWriteChannel(left_motor_channel_b, 0);
+  ledcWriteChannel(right_motor_channel_a, vspeed_r);
+  ledcWriteChannel(right_motor_channel_b, 0);    
+  Serial.println("forward");
 } 
 
 void backward()
-  {
-    ledcWrite(left_motor_channel_a, 0);
-    ledcWrite(left_motor_channel_b, vspeed_l);
-    ledcWrite(right_motor_channel_a, 0);
-    ledcWrite(right_motor_channel_b, vspeed_r);
-    Serial.println("backward");
-  } 
+{
+  ledcWriteChannel(left_motor_channel_a, 0);
+  ledcWriteChannel(left_motor_channel_b, vspeed_l);
+  ledcWriteChannel(right_motor_channel_a, 0);
+  ledcWriteChannel(right_motor_channel_b, vspeed_r);
+  Serial.println("backward");
+} 
 
 void left()
 {
-    ledcWrite(left_motor_channel_a, 0);
-    ledcWrite(left_motor_channel_b, tspeed_l);
-    ledcWrite(right_motor_channel_a, tspeed_r);
-    ledcWrite(right_motor_channel_b, 0);      
-    Serial.println("left");
+  ledcWriteChannel(left_motor_channel_a, 0);
+  ledcWriteChannel(left_motor_channel_b, tspeed_l);
+  ledcWriteChannel(right_motor_channel_a, tspeed_r);
+  ledcWriteChannel(right_motor_channel_b, 0);      
+  Serial.println("left");
 }
 
 void right()
 {
-    ledcWrite(left_motor_channel_a, tspeed_l);
-    ledcWrite(left_motor_channel_b, 0);
-    ledcWrite(right_motor_channel_a, 0);
-    ledcWrite(right_motor_channel_b, tspeed_r);  
-    Serial.println("right");
+  ledcWriteChannel(left_motor_channel_a, tspeed_l);
+  ledcWriteChannel(left_motor_channel_b, 0);
+  ledcWriteChannel(right_motor_channel_a, 0);
+  ledcWriteChannel(right_motor_channel_b, tspeed_r);  
+  Serial.println("right");
 }
 
 void setup() {
   Serial.begin(115200);
 
-// attach the channel to the GPIO to be controlled
+  // attach the channel to the GPIO to be controlled
 
-  //// for esp32 arduino core 2.0.15
+  // for esp32 arduino core 2.0.15
   // ledcSetup(0, 5000, 8);
   // ledcSetup(1, 5000, 8);
   // ledcSetup(2, 5000, 8);
